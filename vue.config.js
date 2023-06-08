@@ -27,16 +27,19 @@ module.exports = {
   publicPath: '/',
   outputDir: 'dist',
   assetsDir: 'static',
-  lintOnSave: process.env.NODE_ENV === 'development',
+  // lintOnSave: process.env.NODE_ENV === 'development',
+
+  lintOnSave: false,  // 关闭eslint校验关闭掉
   productionSourceMap: false,
-  devServer: {
-    port: port,
-    open: true,
-    overlay: {
-      warnings: false,
-      errors: true
-    },
-    before: require('./mock/mock-server.js')
+  proxy: {
+    //配置跨域
+    '/dev-api': {
+      target: 'http://localhost:8082',
+      changeOrigin: true,
+      pathRewrite: {
+        '^/dev-api': ''
+      }
+    }
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
