@@ -31,6 +31,15 @@ module.exports = {
 
   lintOnSave: false,  // 关闭eslint校验关闭掉
   productionSourceMap: false,
+
+  devServer:{
+    port: port,
+    open:true,
+    overlay:{
+      warnings:false,
+      error:true
+    },
+
   proxy: {
     //配置跨域
     '/dev-api': {
@@ -41,6 +50,7 @@ module.exports = {
       }
     }
   },
+},
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
     // it can be accessed in index.html to inject the correct title.
